@@ -34005,7 +34005,7 @@ if test -f "\${2}/wxrc-${WX_RELEASE}" ; then
 fi
 EOF
             chmod +x change-install-names
-            DYLIB_RPATH_INSTALL="\$(wx_top_builddir)/change-install-names \${DESTDIR}\${libdir} \${DESTDIR}\${bindir} \${libdir} \$(wx_top_builddir)/lib"
+            DYLIB_RPATH_INSTALL=""
         fi
 
                                         HEADER_PAD_OPTION="-headerpad_max_install_names"
