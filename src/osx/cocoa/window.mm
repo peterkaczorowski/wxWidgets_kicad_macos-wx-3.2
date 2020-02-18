@@ -2603,8 +2603,8 @@ void wxWidgetCocoaImpl::GetBestRect( wxRect *r ) const
         [m_osxView sizeToFit];
         NSRect best = [m_osxView frame];
         [m_osxView setFrame:former];
-        r->width = (int)best.size.width;
-        r->height = (int)best.size.height;
+        r->width = (int)( best.size.width + 0.5 );
+        r->height = (int)( best.size.height + 0.5 );
     }
 }
 
