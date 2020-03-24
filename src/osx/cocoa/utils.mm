@@ -36,6 +36,65 @@
 
 #if wxOSX_USE_COCOA
 
+wxString wxGetOsDescription()
+{
+    int majorVer, minorVer;
+    wxGetOsVersion(&majorVer, &minorVer);
+
+    // Notice that neither the OS name itself nor the code names seem to be
+    // ever translated, OS X itself uses the English words even for the
+    // languages not using Roman alphabet.
+    // Starting with 10.12 the macOS branding is used
+    wxString osBrand = "macOS";
+    wxString osName;
+    if (majorVer == 10)
+    {
+        switch (minorVer)
+        {
+            case 7:
+                osName = "Lion";
+                // 10.7 was the last version where the "Mac" prefix was used
+                osBrand = "Mac OS X";
+                break;
+            case 8:
+                osName = "Mountain Lion";
+                break;
+            case 9:
+                osName = "Mavericks";
+                break;
+            case 10:
+                osName = "Yosemite";
+                break;
+            case 11:
+                osName = "El Capitan";
+                break;
+            case 12:
+                osName = "Sierra";
+                break;
+            case 13:
+                osName = "High Sierra";
+                break;
+            case 14:
+                osName = "Mojave";
+                break;
+            case 15:
+                osName = "Catalina";
+                break;
+        };
+    }
+
+
+    wxString osDesc = osBrand;
+    if (!osName.empty())
+        osDesc += " " + osName;
+
+    NSString* osVersionString = [NSProcessInfo processInfo].operatingSystemVersionString;
+    if (osVersionString)
+        osDesc += " " + wxCFStringRef::AsString((CFStringRef)osVersionString);
+
+    return osDesc;
+}
+
 #if wxUSE_GUI
 
 // Emit a beeeeeep
