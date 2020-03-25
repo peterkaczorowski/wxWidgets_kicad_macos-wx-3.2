@@ -91,6 +91,8 @@ wxString wxGetOsDescription()
     NSString* osVersionString = [NSProcessInfo processInfo].operatingSystemVersionString;
     if (osVersionString)
         osDesc += " " + wxCFStringRef::AsString((CFStringRef)osVersionString);
+    else
+        osDesc += " " + wxString::Format( "%d.%d", majorVer, minorVer );
 
     return osDesc;
 }
