@@ -104,17 +104,6 @@ wxOperatingSystemId wxGetOsVersion(int *majorVsn, int *minorVsn)
     return wxOS_MAC_OSX_DARWIN;
 }
 
-#include <sys/utsname.h>
-
-wxString wxGetOsDescription()
-{
-    struct utsname name;
-    uname(&name);
-    return wxString::Format(wxT("Mac OS X (%s %s %s)"),
-            wxString::FromAscii(name.sysname).c_str(),
-            wxString::FromAscii(name.release).c_str(),
-            wxString::FromAscii(name.machine).c_str());
-}
 
 //===========================================================================
 //  IMPLEMENTATION
