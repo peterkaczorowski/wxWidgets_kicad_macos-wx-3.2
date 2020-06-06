@@ -33,7 +33,7 @@ bool wxBitmapButton::Create( wxWindow *parent,
                              const wxString& name )
 {
     DontCreatePeer();
-    
+
     if ( !wxBitmapButtonBase::Create(parent, id, pos, size, style,
                                      validator, name) )
         return false;
@@ -66,7 +66,13 @@ wxSize wxBitmapButton::DoGetBestSize() const
 
     if ( GetBitmapLabel().IsOk() )
     {
-        best += GetBitmapLabel().GetScaledSize();
+        wxSize bitmapSize = GetBitmapLabel().GetScaledSize();
+        best += bitmapSize;
+
+        // The NSRoundedBezelStyle and NSTexturedRoundedBezelStyle used when the image is less than 20
+        // tall have a small border on x that cuts off the image
+        if ( bitmapSize.y <= 20 )
+            best += wxSize(4,0);
     }
 
     return best;
