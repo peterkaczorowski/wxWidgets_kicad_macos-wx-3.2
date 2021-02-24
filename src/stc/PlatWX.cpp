@@ -1193,8 +1193,11 @@ PRectangle ListBoxImpl::GetDesiredRect() {
     if (maxw == 0) maxw = 100;
     maxw += aveCharWidth * 3 +
             GETLBW(wid)->IconWidth() + wxSystemSettings::GetMetric(wxSYS_VSCROLL_X);
-    if (maxw > 350)
-        maxw = 350;
+    //*** KICAD PATCH ************************************************************************
+    // Increase max from 350 to 500, primarily for Scintilla auto-complete.
+    if (maxw > 500)
+        maxw = 500;
+    //****************************************************************************************
 
     // estimate a desired height
     int count = GETLB(wid)->GetItemCount();

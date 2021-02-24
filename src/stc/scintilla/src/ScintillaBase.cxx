@@ -250,10 +250,7 @@ void ScintillaBase::AutoCompleteStart(int lenEntered, const char *list) {
 	ac.lb->SetPositionRelative(rcac, wMain);
 	ac.lb->SetFont(vs.styles[STYLE_DEFAULT].font);
 
-	// Using an average char width to determine the list box width is at best problematic,
-	// but pretty much always results in elipses for all-caps autocomplete tokens.  We apply
-	// a bit of a fudge-factor for Kicad.
-	unsigned int aveCharWidth = vs.styles[STYLE_DEFAULT].aveCharWidth * 1.2;
+	unsigned int aveCharWidth = vs.styles[STYLE_DEFAULT].aveCharWidth;
 
 	ac.lb->SetAverageCharWidth(aveCharWidth);
 	ac.lb->SetDoubleClickAction(AutoCompleteDoubleClick, this);
