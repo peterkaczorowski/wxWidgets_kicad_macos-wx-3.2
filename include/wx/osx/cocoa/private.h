@@ -411,11 +411,12 @@ public:
 
     @interface wxNSTextField : NSTextField <NSTextFieldDelegate>
     {
-        wxNSTextFieldEditor* fieldEditor;
     }
 
-    - (wxNSTextFieldEditor*) fieldEditor;
-    - (void) setFieldEditor:(wxNSTextFieldEditor*) fieldEditor;
+    // Note that the name WXFieldEditor is special and is checked by
+    // windowWillReturnFieldEditor: in wxNonOwnedWindowController
+    // implementation, see there.
+    @property (retain) wxNSTextFieldEditor* WXFieldEditor;
 
     @end
 
@@ -437,22 +438,18 @@ public:
 
     @interface wxNSSearchField : NSSearchField
     {
-        wxNSTextFieldEditor* fieldEditor;
         BOOL m_withinTextDidChange;
     }
 
-    - (wxNSTextFieldEditor*) fieldEditor;
-    - (void) setFieldEditor:(wxNSTextFieldEditor*) fieldEditor;
+    @property (retain) wxNSTextFieldEditor* WXFieldEditor;
 
     @end
 
     @interface wxNSComboBox : NSComboBox
     {
-        wxNSTextFieldEditor* fieldEditor;
     }
 
-    - (wxNSTextFieldEditor*) fieldEditor;
-    - (void) setFieldEditor:(wxNSTextFieldEditor*) fieldEditor;
+    @property (retain) wxNSTextFieldEditor* WXFieldEditor;
 
     @end
 
