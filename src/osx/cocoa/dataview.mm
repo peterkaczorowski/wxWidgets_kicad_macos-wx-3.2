@@ -1776,7 +1776,12 @@ outlineView:(NSOutlineView*)outlineView
     // handled because this would break processing of any navigation keys (e.g.
     // arrows) that are mapped to the standard selectors and for which
     // DoHandleKeyEvent() currently always returns true.
-    implementation->DoHandleKeyEvent(event);
+
+    // Kicad note: we only use this in the LIB_TREEs currently, where we handle
+    // our own navigation, expand/collapse anyway.  So we go ahead and return if
+    // we handled the event.
+    if( implementation->DoHandleKeyEvent(event) )
+        return;
 
     if( [[event charactersIgnoringModifiers]
          characterAtIndex: 0] == NSCarriageReturnCharacter )
