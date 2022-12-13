@@ -363,7 +363,7 @@ bool wxMenu::HandleCommandProcess( wxMenuItem* item )
 
     int menuid = item->GetId();
     bool processed = false;
-    if (item->IsCheckable())
+    if (item && item->IsCheckable())
         item->Check( !item->IsChecked() ) ;
 
     // A bit counterintuitively, we call OSXAfterMenuEvent() _before_ calling
@@ -375,7 +375,7 @@ bool wxMenu::HandleCommandProcess( wxMenuItem* item )
         w->OSXAfterMenuEvent();
     }
 
-    if ( SendEvent( menuid , item->IsCheckable() ? item->IsChecked() : -1 ) )
+    if ( SendEvent( menuid , item && item->IsCheckable() ? item->IsChecked() : -1 ) )
         processed = true ;
 
     if(!processed)
