@@ -186,10 +186,10 @@ void wxGenericMessageDialog::DoCreateMsgdialog()
     wxBoxSizer * const textsizer = new wxBoxSizer(wxVERTICAL);
 
     // To prevent clipping
-    int maxWidth = wxSystemSettings::GetMetric(wxSYS_SCREEN_X, this) - FromDIP(25);
+    int maxWidth = wxSystemSettings::GetMetric( wxSYS_SCREEN_X, this ) - FromDIP(25);
 
     // To enhance readability
-    maxWidth = wxMin( maxWidth, GetCharWidth() * 70 );
+    maxWidth = std::min( maxWidth, GetTextExtent( wxS( "x" ) ).x * 70 );
 
     // We want to show the main message in a different font to make it stand
     // out if the extended message is used as well. This looks better and is
