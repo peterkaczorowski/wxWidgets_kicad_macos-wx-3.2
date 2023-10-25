@@ -2466,16 +2466,10 @@ void wxGenericTreeCtrl::CalculateLineHeight()
 
 void wxGenericTreeCtrl::OnImagesChanged()
 {
-    if ( HasImages() )
-    {
-        // We call it solely for the side effect of updating the image list,
-        // which may be used by the application code using this class, even if
-        // we don't use it ourselves, but it also has an important side effect
-        // of ensuring that we can always get the size to use for the images.
-        GetUpdatedImageListFor(this);
+    // We call it solely for the side effect of updating the image list.
+    GetUpdatedImageListFor(this);
 
-        UpdateAfterImageListChange();
-    }
+    UpdateAfterImageListChange();
 }
 
 void wxGenericTreeCtrl::UpdateAfterImageListChange()
