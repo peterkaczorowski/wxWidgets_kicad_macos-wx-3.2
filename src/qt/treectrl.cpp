@@ -632,6 +632,12 @@ void wxTreeCtrl::OnImagesChanged()
     }
 }
 
+void wxTreeCtrl::SetStateImages(const wxVector<wxBitmapBundle>& images)
+{
+    m_imagesState.SetImages(images);
+    m_qtTreeWidget->update();
+}
+
 void wxTreeCtrl::SetStateImageList(wxImageList *imageList)
 {
     m_imagesState.SetImageList(imageList);

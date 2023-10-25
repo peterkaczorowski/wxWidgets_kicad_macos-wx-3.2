@@ -73,6 +73,7 @@ public:
     virtual unsigned int GetIndent() const wxOVERRIDE { return m_indent; }
     virtual void SetIndent(unsigned int indent) wxOVERRIDE;
 
+    virtual void SetStateImages(const wxVector<wxBitmapBundle>& images) override;
 
     virtual void SetImageList(wxImageList *imageList) wxOVERRIDE;
     virtual void SetStateImageList(wxImageList *imageList) wxOVERRIDE;

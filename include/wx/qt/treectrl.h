@@ -35,8 +35,10 @@ public:
     virtual unsigned int GetIndent() const wxOVERRIDE;
     virtual void SetIndent(unsigned int indent) wxOVERRIDE;
 
-    virtual void SetImageList(wxImageList *imageList) wxOVERRIDE;
-    virtual void SetStateImageList(wxImageList *imageList) wxOVERRIDE;
+    virtual void SetStateImages(const wxVector<wxBitmapBundle>& images) override;
+
+    virtual void SetImageList(wxImageList *imageList) override;
+    virtual void SetStateImageList(wxImageList *imageList) override;
 
     virtual wxString GetItemText(const wxTreeItemId& item) const wxOVERRIDE;
     virtual int GetItemImage(const wxTreeItemId& item,

@@ -710,12 +710,20 @@ void MyFrame::OnToggleStates(wxCommandEvent& WXUNUSED(event))
 {
     if ( wxGetApp().ShowStates() )
     {
+<<<<<<< HEAD
         m_treeCtrl->CreateStateImageList(true);
+=======
+        m_treeCtrl->SetStateImages({});
+>>>>>>> d42aefccee (Add wxTreeCtrl::SetStateImages())
         wxGetApp().SetShowStates(false);
     }
     else
     {
+<<<<<<< HEAD
         m_treeCtrl->CreateStateImageList(false);
+=======
+        m_treeCtrl->CreateStateImages();
+>>>>>>> d42aefccee (Add wxTreeCtrl::SetStateImages())
         wxGetApp().SetShowStates(true);
     }
 }
@@ -738,7 +746,7 @@ void MyFrame::OnToggleAlternateStates(wxCommandEvent& WXUNUSED(event))
     bool alternateStates = m_treeCtrl->AlternateStates();
 
     m_treeCtrl->SetAlternateStates(!alternateStates);
-    m_treeCtrl->CreateStateImageList();
+    m_treeCtrl->CreateStateImages();
 
     // normal states < alternate states
     // so we must reset broken states
@@ -956,7 +964,7 @@ MyTreeCtrl::MyTreeCtrl(wxWindow *parent, const wxWindowID id,
     m_reverseSort = false;
 
     CreateImages(16);
-    CreateStateImageList();
+    CreateStateImages();
 
     // Add some items to the tree
     AddTestItemsToTree(NUM_CHILDREN_PER_LEVEL, NUM_LEVELS);
@@ -1042,52 +1050,33 @@ void MyTreeCtrl::CreateImages(int size)
     SetImages(images);
 }
 
-void MyTreeCtrl::CreateStateImageList(bool del)
+void MyTreeCtrl::CreateStateImages()
 {
-    if ( del )
-    {
-        SetStateImageList(NULL);
-        return;
-    }
-
-    wxImageList *states;
-    wxBusyCursor wait;
+    std::vector<wxIcon> icons;
 
     if (m_alternateStates)
     {
-        wxIcon icons[5];
-        icons[0] = wxIcon(state1_xpm);  // yellow
-        icons[1] = wxIcon(state2_xpm);  // green
-        icons[2] = wxIcon(state3_xpm);  // red
-        icons[3] = wxIcon(state4_xpm);  // blue
-        icons[4] = wxIcon(state5_xpm);  // black
-
-        int width  = icons[0].GetWidth(),
-            height = icons[0].GetHeight();
-
-        // Make a state image list containing small icons
-        states = new wxImageList(width, height, true);
-
-        for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
-            states->Add(icons[i]);
+        icons.push_back(wxIcon(state1_xpm));  // yellow
+        icons.push_back(wxIcon(state2_xpm));  // green
+        icons.push_back(wxIcon(state3_xpm));  // red
+        icons.push_back(wxIcon(state4_xpm));  // blue
+        icons.push_back(wxIcon(state5_xpm));  // black
     }
     else
     {
-        wxIcon icons[2];
-        icons[0] = wxIcon(unchecked_xpm);
-        icons[1] = wxIcon(checked_xpm);
-
-        int width  = icons[0].GetWidth(),
-            height = icons[0].GetHeight();
-
-        // Make an state image list containing small icons
-        states = new wxImageList(width, height, true);
-
-        for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
-            states->Add(icons[i]);
+        icons.push_back(wxIcon(unchecked_xpm));
+        icons.push_back(wxIcon(checked_xpm));
     }
 
-    AssignStateImageList(states);
+    std::vector<wxBitmapBundle> images;
+
+    const wxSize iconSize(icons[0].GetWidth(), icons[0].GetHeight());
+    for ( const wxIcon& icon : icons )
+    {
+        images.push_back(wxBitmapBundle::FromImpl(new FixedSizeImpl(iconSize, icon)));
+    }
+
+    SetStateImages(images);
 }
 
 void MyTreeCtrl::CreateButtonsImageList(int size)
