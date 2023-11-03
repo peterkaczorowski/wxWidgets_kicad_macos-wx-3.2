@@ -161,6 +161,11 @@ Changes in behaviour not resulting in compilation errors
 - wxDateTime::ParseRfc822Date() now interprets a 2-digit year as 19xx, or
   20xx for 00..29, whereas earlier e.g. 95 was interpreted literally as 95 AD.
 
+- wxImageList size is now expressed in physical pixels, i.e. its size must be
+  the same as the size of bitmaps added to it, in pixels. This is inconvenient
+  but should be viewed as a hint not to use wxImageList (but wxBitmapBundle)
+  in the applications supporting high DPI.
+
 
 Changes in behaviour which may result in build errors
 -----------------------------------------------------

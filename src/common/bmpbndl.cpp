@@ -705,11 +705,7 @@ wxBitmapBundle::CreateImageList(wxWindow* win,
     wxCHECK_MSG( win, NULL, "must have a valid window" );
     wxCHECK_MSG( !bundles.empty(), NULL, "should have some images" );
 
-    wxSize size = GetConsensusSizeFor(win, bundles);
-
-    // wxImageList wants the logical size for the platforms where logical and
-    // physical pixels are different.
-    size /= win->GetContentScaleFactor();
+    const wxSize size = GetConsensusSizeFor(win, bundles);
 
     wxImageList* const iml = new wxImageList(size.x, size.y);
 
