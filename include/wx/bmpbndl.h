@@ -162,12 +162,12 @@ public:
     static wxSize
     GetConsensusSizeFor(double scale, const wxVector<wxBitmapBundle>& bundles);
     static wxSize
-    GetConsensusSizeFor(wxWindow* win, const wxVector<wxBitmapBundle>& bundles);
+    GetConsensusSizeFor(const wxWindow* win, const wxVector<wxBitmapBundle>& bundles);
 
     // Create wxImageList and fill it with the images from the given bundles in
     // the sizes appropriate for the DPI scaling used for the specified window.
     static wxImageList*
-    CreateImageList(wxWindow* win, const wxVector<wxBitmapBundle>& bundles);
+    CreateImageList(const wxWindow* win, const wxVector<wxBitmapBundle>& bundles);
 
 private:
     typedef wxObjectDataPtr<wxBitmapBundleImpl> wxBitmapBundleImplPtr;

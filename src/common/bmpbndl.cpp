@@ -649,7 +649,7 @@ void RecordSizePref(SizePrefs& prefs, const wxSize& size)
 
 /* static */
 wxSize
-wxBitmapBundle::GetConsensusSizeFor(wxWindow* win,
+wxBitmapBundle::GetConsensusSizeFor(const wxWindow* win,
                                     const wxVector<wxBitmapBundle>& bundles)
 {
     return GetConsensusSizeFor(win->GetDPIScaleFactor(), bundles);
@@ -699,7 +699,7 @@ wxBitmapBundle::GetConsensusSizeFor(double scale,
 
 /* static */
 wxImageList*
-wxBitmapBundle::CreateImageList(wxWindow* win,
+wxBitmapBundle::CreateImageList(const wxWindow* win,
                                 const wxVector<wxBitmapBundle>& bundles)
 {
     wxCHECK_MSG( win, NULL, "must have a valid window" );
