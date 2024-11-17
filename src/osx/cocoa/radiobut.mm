@@ -102,7 +102,7 @@ wxWidgetImplType* wxWidgetImpl::CreateRadioButton( wxWindowMac* wxpeer,
                                     const wxString& WXUNUSED(label),
                                     const wxPoint& pos,
                                     const wxSize& size,
-                                    long style,
+                                    long WXUNUSED(style),
                                     long WXUNUSED(extraStyle))
 {
     NSRect r = wxOSXGetFrameForControl( wxpeer, pos , size ) ;
@@ -110,7 +110,6 @@ wxWidgetImplType* wxWidgetImpl::CreateRadioButton( wxWindowMac* wxpeer,
 
     [v setButtonType:NSRadioButton];
     [v setAlignment:NSLeftTextAlignment];
-    [v setStyle:style];
 
     static int alternateAction = 1;
  
