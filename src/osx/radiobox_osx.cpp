@@ -128,7 +128,7 @@ bool wxRadioBox::Create( wxWindow *parent,
             this,
             wxID_ANY,
             GetLabelText(choices[i]),
-            wxPoint( 10, 20 * i + 10 ),
+            wxPoint( 5, 20 * i + 10 ),
             wxDefaultSize,
             alignment | ( (i == 0) ? wxRB_GROUP : 0 ) );
 
@@ -418,16 +418,12 @@ void wxRadioBox::DoSetSize(int x, int y, int width, int height, int sizeFlags)
     }
 
     // according to HIG (official space - 3 Pixels Diff between Frame and Layout size)
-    int vspace = 3;
+    int space = 3;
     if ( GetWindowVariant() == wxWINDOW_VARIANT_MINI )
-        vspace = 2;
+        space = 2;
 
-    int hspace = charWidth * 2;
-    if( m_windowStyle & wxRA_SPECIFY_COLS )
-        hspace += 10;   // must match wxNSRadioButton setFrameOrigin: override in radiobut.mm
-
-    totHeight = GetRowCount() * maxHeight + (GetRowCount() - 1) * vspace;
-    totWidth  = GetColumnCount() * (maxWidth + 10 + charWidth);
+    totHeight = GetRowCount() * maxHeight + (GetRowCount() - 1) * space;
+    totWidth  = GetColumnCount() * (maxWidth + charWidth);
 
     // Determine the full size in case we need to use it as fallback.
     wxSize sz;
@@ -479,13 +475,13 @@ void wxRadioBox::DoSetSize(int x, int y, int width, int height, int sizeFlags)
         {
             if (m_windowStyle & wxRA_SPECIFY_ROWS)
             {
-                x_offset += maxWidth + hspace;
+                x_offset += maxWidth + charWidth;
                 y_offset = y_start;
             }
             else
             {
                 x_offset = x_start;
-                y_offset += maxHeight + vspace;
+                y_offset += maxHeight + space;
             }
         }
 
@@ -493,9 +489,9 @@ void wxRadioBox::DoSetSize(int x, int y, int width, int height, int sizeFlags)
         current = current->NextInCycle();
 
         if (m_windowStyle & wxRA_SPECIFY_ROWS)
-            y_offset += maxHeight + vspace;
+            y_offset += maxHeight + space;
         else
-            x_offset += maxWidth + hspace;
+            x_offset += maxWidth + charWidth;
     }
 }
 

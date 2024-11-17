@@ -30,7 +30,6 @@ extern void wxOSX_controlAction(NSView* self, SEL _cmd, id sender);
 @interface wxNSRadioButton : NSButton
 {
     NSTrackingRectTag rectTag;
-    long m_style;
 }
 
 @end
@@ -48,21 +47,6 @@ extern void wxOSX_controlAction(NSView* self, SEL _cmd, id sender);
             class_addMethod(self, NSSelectorFromString([NSString stringWithFormat: alternateActionsSelector, i]), (IMP) wxOSX_controlAction, "v@:@" );
         }
     }
-}
-
-- (void) setFrameOrigin: (NSPoint) origin
-{
-    if ( m_style & wxLEFT )
-    {
-        // Force to left alignment
-        origin.x = 10;
-    }
-    [super setFrameOrigin: origin ];
-}
-
-- (void) setStyle: (long) style
-{
-    m_style = style;
 }
 
 - (void) setState: (NSInteger) v
