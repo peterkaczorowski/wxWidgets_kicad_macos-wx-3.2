@@ -8,8 +8,8 @@
 	branch = wx
 [submodule "src/png"]
 	path = src/png
-	url = https://github.com/wxWidgets/libpng.git
-	branch = wx
+	url = https://github.com/peterkaczorowski/libpng.git
+	branch = v1.6.45-apng-wxwidgets
 [submodule "src/expat"]
 	path = src/expat
 	url = https://github.com/wxWidgets/libexpat.git
