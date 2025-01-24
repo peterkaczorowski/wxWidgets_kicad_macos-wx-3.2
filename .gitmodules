@@ -9,7 +9,7 @@
 [submodule "src/png"]
 	path = src/png
 	url = https://github.com/peterkaczorowski/libpng.git
-	branch = v1.6.45-apng-wxwidgets
+	branch = v1.6.45-apng-nishikawa-wx
 [submodule "src/expat"]
 	path = src/expat
 	url = https://github.com/wxWidgets/libexpat.git
